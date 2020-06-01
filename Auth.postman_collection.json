@@ -1,0 +1,539 @@
+{
+	"id": "f779f86e-7674-41c9-8eda-b98e4bf00f9a",
+	"name": "Auth",
+	"description": "",
+	"auth": null,
+	"events": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a5e28d88-b7a8-4d40-9ef0-c281723e9d19",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ca7e4afa-d598-45c4-a514-a106199061e6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variables": [
+		{
+			"key": "baseUrl",
+			"value": "arch.homework",
+			"disabled": false
+		},
+		{
+			"key": "login",
+			"value": "",
+			"disabled": false
+		},
+		{
+			"key": "password",
+			"value": "",
+			"disabled": false
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"disabled": false
+		}
+	],
+	"order": [
+		"f7ea827c-d2c5-4b42-ab21-6ef414245780",
+		"67bbb41f-00e3-47a3-9c90-4083f743314a",
+		"ce523c01-f5e7-4b3c-bb41-f4a3b50f56a8",
+		"6bfff4d8-7ecd-435a-a578-1e1705c17a25",
+		"5843009b-d345-4457-ae0c-10628194be58",
+		"93b52275-dfd5-4faf-9ec4-31051c344219",
+		"eccc50f3-c44e-4028-a2a3-97abc83e76de",
+		"68eca1f7-9006-4b3d-8591-a545b49a8c35",
+		"27b567b9-e71a-4b42-8d4a-5db3e070c429",
+		"74f56939-f6d7-48be-8871-af2eff598061"
+	],
+	"folders_order": [],
+	"protocolProfileBehavior": {},
+	"folders": [],
+	"requests": [
+		{
+			"id": "27b567b9-e71a-4b42-8d4a-5db3e070c429",
+			"name": "Вход пользователя 2",
+			"url": "http://{{baseUrl}}/login",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95197fab-2925-4169-9107-149c94fe1628",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\"Login\":\"{{login}}\",\"Password\":\"{{password}}\"}",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "5843009b-d345-4457-ae0c-10628194be58",
+			"name": "Изменение профиля пользователя 1",
+			"url": "http://{{baseUrl}}/users/{{userId}}",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "X-UserId",
+					"value": "5",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "X-User",
+					"value": "Bridgette99",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b7f47ac-18c4-431c-94c0-b18ab956bec9",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\"firstName\":\"Ivan\",\"lastName\":\"Smirnov\",\"email\":\"ismirnov@gmail.com\",\"phone\":\"+79473965777\"}",
+			"headers": "//X-UserId: 5\n//X-User: Bridgette99\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "67bbb41f-00e3-47a3-9c90-4083f743314a",
+			"name": "Проверка недоступности профиля пользователя 1 без логина",
+			"url": "http://{{baseUrl}}/users/me",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "X-UserId",
+					"value": "5",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-User",
+					"value": "Bridgette99",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-Email",
+					"value": "dfdf@sdf.sd",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cbe7fff8-790c-4195-8cc0-d3ffa2cc8b9d",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"rawModeData": "",
+			"headers": "X-UserId: 5\nX-User: Bridgette99\nX-Email: dfdf@sdf.sd\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "68eca1f7-9006-4b3d-8591-a545b49a8c35",
+			"name": "Регистрация пользователя 2",
+			"url": "http://{{baseUrl}}/register",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f29aadf7-10a2-4a33-b877-9f6aac5a68c8",
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"userId\", responseJSON[\"id\"]);\r",
+							"\r",
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ac19a59c-5b57-41ab-a32a-8a31f7afaae4",
+						"exec": [
+							"pm.collectionVariables.set(\"login\", pm.variables.replaceIn('{{$randomUserName}}'))\r",
+							"pm.collectionVariables.set(\"password\", pm.variables.replaceIn('{{$randomPassword}}'))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\"login\":\"{{login}}\",\"password\":\"{{password}}\"}",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "6bfff4d8-7ecd-435a-a578-1e1705c17a25",
+			"name": "Проверка доступности профиля пользователя 1 после логина",
+			"url": "http://{{baseUrl}}/users/me",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "X-UserId",
+					"value": "5",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-User",
+					"value": "Bridgette99",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-Email",
+					"value": "dfdf@sdf.sd",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a28adb80-a183-40db-b179-4cb33dfb7fcf",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"headers": "X-UserId: 5\nX-User: Bridgette99\nX-Email: dfdf@sdf.sd\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "74f56939-f6d7-48be-8871-af2eff598061",
+			"name": "Проверка факта, что пользователю 2 доступен только свой профиль",
+			"url": "http://{{baseUrl}}/users/me",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "X-UserId",
+					"value": "5",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-User",
+					"value": "Bridgette99",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-Email",
+					"value": "dfdf@sdf.sd",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0be59f3-1d5a-4b39-9b5b-0bad465c2fcd",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"headers": "X-UserId: 5\nX-User: Bridgette99\nX-Email: dfdf@sdf.sd\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "93b52275-dfd5-4faf-9ec4-31051c344219",
+			"name": "Проверка изменений профиля пользователя 1",
+			"url": "http://{{baseUrl}}/users/me",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "X-UserId",
+					"value": "5",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-User",
+					"value": "Bridgette99",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "X-Email",
+					"value": "dfdf@sdf.sd",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "408deaab-ff69-4fff-a0e0-cd6cfd63dad7",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"headers": "X-UserId: 5\nX-User: Bridgette99\nX-Email: dfdf@sdf.sd\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ce523c01-f5e7-4b3c-bb41-f4a3b50f56a8",
+			"name": "Вход пользователя 1",
+			"url": "http://{{baseUrl}}/login",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7926170-eb75-4d7a-aea3-c553a95c7f47",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\"Login\":\"{{login}}\",\"Password\":\"{{password}}\"}",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "eccc50f3-c44e-4028-a2a3-97abc83e76de",
+			"name": "Выход пользователя 1",
+			"url": "http://{{baseUrl}}/logout",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b73f9e2f-6cda-46b1-b31d-84d3ddc33249",
+						"exec": [
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"rawModeData": "",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f7ea827c-d2c5-4b42-ab21-6ef414245780",
+			"name": "Регистрация пользователя 1",
+			"url": "http://{{baseUrl}}/register",
+			"description": "",
+			"data": [],
+			"dataOptions": {
+				"raw": {
+					"language": "json"
+				}
+			},
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "808ffae3-0d28-4730-b4da-ed6843aecbf4",
+						"exec": [
+							"var responseJSON = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"userId\", responseJSON[\"id\"]);\r",
+							"\r",
+							"tests[\"[INFO] Request: \" + (('data' in request) ? request['data'] : '') ] = true;\r",
+							"tests[\"[INFO] Response: \" + responseBody] = true;"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1302afcd-a4c3-46de-8a75-2336d2c36571",
+						"exec": [
+							"pm.collectionVariables.set(\"login\", pm.variables.replaceIn('{{$randomUserName}}'))\r",
+							"pm.collectionVariables.set(\"password\", pm.variables.replaceIn('{{$randomPassword}}'))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\"login\":\"{{login}}\",\"password\":\"{{password}}\"}",
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
